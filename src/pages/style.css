@@ -1,0 +1,74 @@
+/* src/style.css */
+body {
+    font-family: 'Arial, sans-serif';
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.meta-logo {
+    width: 100px; /* Keep the Meta logo size same */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.header-logo-container {
+    height: 80px; /* Adjust the height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; /* Remove any default margins */
+}
+
+.validation_form_para {
+    font-size: 12px;
+}
+
+.img-smal {
+    width: 100%; /* Adjusted width */
+    height: auto; /* Adjusted height */
+}
+
+@media (max-width: 590px) {
+    .img-smal {
+        width: 80%;
+        height: 50%;
+        order: 1;
+        display: block;
+    }
+}
+
+button, a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+button {
+    background-color: #0064e0;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 35px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0053c1;
+}
+
+a {
+    color: #0064e0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #0053c1;
+}
+
+.font-italic {
+    color: #6c757d;
+    font-style: italic;
+}
