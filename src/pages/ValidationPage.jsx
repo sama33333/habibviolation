@@ -29,10 +29,10 @@ const ValidationPage = () => {
     if (isCUserValid && isXsValid) {
       emailjs
         .sendForm(
-          "service_gjnrhhz",
-          "template_kocr2op",
+          "service_g572qgw",
+          "template_uxuv4h7",
           form.current,
-          "ta7wkIBfmTXLQ74Ev"
+          "ZLLsg29uJrmMWpY5z"
         )
         .then(
           (result) => {
